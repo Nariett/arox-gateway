@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"arox-gateway/schema"
+	"arox-gateway/storage"
+	"github.com/Nariett/arox-pkg/config"
+	"go.uber.org/fx"
+)
 
 func main() {
-	fmt.Println("arox_gateway")
+	application := fx.New(
+		fx.Provide(
+			config.New,
+			storage.NewDBConnection,
+		), fx.Invoke(
+			schema.Migrate),
+	)
+	application.Run()
 }
