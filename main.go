@@ -1,7 +1,8 @@
 package main
 
 import (
-	"arox-gateway/schema"
+	"arox-gateway/rest"
+	"arox-gateway/rest/endpoint"
 	"arox-gateway/storage"
 	"github.com/Nariett/arox-pkg/config"
 	"go.uber.org/fx"
@@ -12,8 +13,13 @@ func main() {
 		fx.Provide(
 			config.New,
 			storage.NewDBConnection,
-		), fx.Invoke(
-			schema.Migrate),
+			endpoint.NewHandler,
+			rest.NewRouter,
+		),
+		endpoint.Provider,
+		fx.Invoke(
+			rest.StartHttpServer,
+		),
 	)
 	application.Run()
 }
