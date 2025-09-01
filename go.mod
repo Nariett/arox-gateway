@@ -1,6 +1,6 @@
 module arox-gateway
 
-go 1.23.3
+go 1.25.0
 
 require (
 	github.com/Nariett/arox-pkg v0.0.0-20250901211022-0f9aa4c95a49
