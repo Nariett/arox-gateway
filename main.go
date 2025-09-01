@@ -2,21 +2,33 @@ package main
 
 import (
 	"arox-gateway/rest"
-	"arox-gateway/rest/endpoint"
-	"arox-gateway/storage"
+	"arox-gateway/rest/endpoints"
+	"arox-gateway/rpc"
+	"arox-gateway/stores"
 	"github.com/Nariett/arox-pkg/config"
+	"github.com/Nariett/arox-pkg/db"
 	"go.uber.org/fx"
+	"log"
 )
 
 func main() {
+	cfg, err := config.New()
+	if err != nil {
+		log.Fatalf("Error loading config: %v", err)
+
+		return
+	}
+
 	application := fx.New(
+		fx.Supply(cfg),
 		fx.Provide(
-			config.New,
-			storage.NewDBConnection,
-			endpoint.NewHandler,
+			endpoints.NewHandler,
 			rest.NewRouter,
+			rpc.ListenServer,
+			db.NewPostgres,
 		),
-		endpoint.Provider,
+		stores.Construct(),
+		endpoints.Provider,
 		fx.Invoke(
 			rest.StartHttpServer,
 		),
