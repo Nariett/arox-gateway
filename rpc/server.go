@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/Nariett/arox-pkg/config"
 	proto "github.com/Nariett/arox-pkg/grpc/pb/products"
-
 	"google.golang.org/grpc"
 	"log"
 )

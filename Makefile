@@ -1,3 +1,3 @@
 update_pkg:
-	@echo "Update arox-prg"
+	@echo "Update arox-pkg"
 	go get github.com/Nariett/arox-pkg@main
