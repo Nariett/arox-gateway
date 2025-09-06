@@ -7,7 +7,7 @@ import (
 )
 
 type Endpoint interface {
-	Gets() http.HandlerFunc
+	GetProducts() http.HandlerFunc
 }
 
 type endpoint struct {

@@ -8,7 +8,7 @@ import (
 func NewRouter(endpoints endpoints.Endpoints) chi.Router {
 	r := chi.NewRouter()
 
-	r.Get("/products/", endpoints.Product().Gets())
+	r.Get("/products/", endpoints.Product().GetProducts())
 
 	return r
 }

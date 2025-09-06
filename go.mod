@@ -1,11 +1,10 @@
 module arox-gateway
 
-go 1.25.0
+go 1.24.0
 
 require (
-	github.com/Nariett/arox-pkg v0.0.0-20250901211022-0f9aa4c95a49
+	github.com/Nariett/arox-pkg v0.0.0-20250906130426-1dbfd4148210
 	github.com/go-chi/chi/v5 v5.2.2
-	github.com/golang-migrate/migrate/v4 v4.18.3
 	github.com/jmoiron/sqlx v1.4.0
 	go.uber.org/fx v1.24.0
 	google.golang.org/grpc v1.75.0
@@ -13,11 +12,11 @@ require (
 )
 
 require (
+	github.com/golang-migrate/migrate/v4 v4.19.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/lib/pq v1.10.9 // indirect
-	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/dig v1.19.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
