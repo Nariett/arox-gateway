@@ -1,4 +1,4 @@
-package products
+package categories
 
 import (
 	"github.com/Nariett/arox-pkg/response"
@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-func (e *endpoint) GetProduct() http.HandlerFunc {
+func (e *endpoint) GetCategory() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		idQuery := chi.URLParam(r, "id")
 		if idQuery == "" {
@@ -25,7 +25,7 @@ func (e *endpoint) GetProduct() http.HandlerFunc {
 			return
 		}
 
-		products, err := e.srv.GetById(r.Context(), int64(id))
+		category, err := e.srv.GetById(r.Context(), int64(id))
 		if err != nil {
 			st, ok := status.FromError(err)
 			if ok {
@@ -44,6 +44,6 @@ func (e *endpoint) GetProduct() http.HandlerFunc {
 			return
 		}
 
-		response.Ok(w, products)
+		response.Ok(w, category)
 	}
 }

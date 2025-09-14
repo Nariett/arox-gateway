@@ -1,20 +1,21 @@
 package categories
 
 import (
-	proto "github.com/Nariett/arox-pkg/grpc/pb/products"
+	"arox-gateway/services/categories"
 	"net/http"
 )
 
 type Endpoint interface {
 	GetCategories() http.HandlerFunc
+	GetCategory() http.HandlerFunc
 }
 
 type endpoint struct {
-	client proto.ProductsServiceClient
+	srv categories.Service
 }
 
-func NewEndpoint(client proto.ProductsServiceClient) Endpoint {
+func NewEndpoint(srv categories.Service) Endpoint {
 	return &endpoint{
-		client: client,
+		srv: srv,
 	}
 }

@@ -8,10 +8,15 @@ import (
 func NewRouter(endpoints endpoints.Endpoints) chi.Router {
 	r := chi.NewRouter()
 
-	r.Get("/products/", endpoints.Products().GetProducts())
-	r.Get("/product/{id}", endpoints.Products().GetProduct())
+	r.Route("/products", func(r chi.Router) {
+		r.Get("/", endpoints.Products().GetProducts())
+		r.Get("/{id}", endpoints.Products().GetProduct())
+	})
 
-	r.Get("/categories/", endpoints.Categories().GetCategories())
+	r.Route("/categories", func(r chi.Router) {
+		r.Get("/", endpoints.Categories().GetCategories())
+		r.Get("/{id}", endpoints.Categories().GetCategory())
+	})
 
 	return r
 }

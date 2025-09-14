@@ -4,6 +4,7 @@ import (
 	"arox-gateway/rest"
 	"arox-gateway/rest/endpoints"
 	"arox-gateway/rpc"
+	"arox-gateway/services"
 	"arox-gateway/stores"
 	"github.com/Nariett/arox-pkg/config"
 	"github.com/Nariett/arox-pkg/db"
@@ -28,6 +29,7 @@ func main() {
 			db.NewPostgres,
 		),
 		stores.Construct(),
+		services.Construct(),
 		endpoints.Provider,
 		fx.Invoke(
 			rest.StartHttpServer,

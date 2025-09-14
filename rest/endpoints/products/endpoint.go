@@ -1,8 +1,8 @@
 package products
 
 import (
+	"arox-gateway/services/products"
 	"arox-gateway/stores"
-	proto "github.com/Nariett/arox-pkg/grpc/pb/products"
 	"net/http"
 )
 
@@ -12,13 +12,13 @@ type Endpoint interface {
 }
 
 type endpoint struct {
-	client proto.ProductsServiceClient
 	stores stores.Stores
+	srv    products.Service
 }
 
-func NewEndpoint(client proto.ProductsServiceClient, stores stores.Stores) Endpoint {
+func NewEndpoint(stores stores.Stores, srv products.Service) Endpoint {
 	return &endpoint{
-		client: client,
 		stores: stores,
+		srv:    srv,
 	}
 }
