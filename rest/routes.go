@@ -8,6 +8,10 @@ import (
 func NewRouter(endpoints endpoints.Endpoints) chi.Router {
 	r := chi.NewRouter()
 
+	r.Route("/token", func(r chi.Router) {
+		r.Get("/{uuid}", endpoints.Token().GetToken())
+	})
+
 	r.Route("/products", func(r chi.Router) {
 		r.Get("/", endpoints.Products().GetProducts())
 		r.Get("/{id}", endpoints.Products().GetProduct())

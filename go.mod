@@ -3,8 +3,10 @@ module arox-gateway
 go 1.24.0
 
 require (
-	github.com/Nariett/arox-pkg v0.0.0-20250914230609-ab1896cfd030
+	github.com/Nariett/arox-pkg v0.0.0-20251011194347-cda1d54c3f97
 	github.com/go-chi/chi/v5 v5.2.2
+	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/google/uuid v1.6.0
 	github.com/jmoiron/sqlx v1.4.0
 	go.uber.org/fx v1.24.0
 	google.golang.org/grpc v1.75.0
