@@ -1,9 +1,8 @@
 package token
 
 import (
+	"encoding/json"
 	"github.com/Nariett/arox-pkg/response"
-	"github.com/go-chi/chi/v5"
-	"github.com/google/uuid"
 	"net/http"
 )
 
@@ -11,23 +10,22 @@ type GetTokenResponse struct {
 	Token string `json:"token"`
 }
 
+type LoginRequest struct {
+	Login    string `json:"login"`
+	Password string `json:"password"`
+}
+
 func (e *endpoint) GetToken() http.HandlerFunc {
-	return func(w http.ResponseWriter, req *http.Request) {
-		uuidStr := chi.URLParam(req, "uuid")
-		if uuidStr == "" {
-			response.BadRequest(w, "'uuid' param is required")
+	return func(w http.ResponseWriter, r *http.Request) {
+		var req LoginRequest
+
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+			response.BadRequest(w, err.Error())
 
 			return
 		}
 
-		parsedUUID, err := uuid.Parse(uuidStr)
-		if err != nil {
-			response.BadRequest(w, "invalid uuid")
-
-			return
-		}
-
-		token, err := e.srv.GenerateToken(parsedUUID)
+		token, err := e.srv.GenerateToken(req.Login, req.Password)
 		if err != nil {
 			response.BadRequest(w, err.Error())
 

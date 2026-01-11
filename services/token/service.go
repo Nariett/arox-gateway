@@ -1,18 +1,19 @@
 package token
 
 import (
+	"arox-gateway/stores"
 	"github.com/Nariett/arox-pkg/config"
-	"github.com/google/uuid"
 )
 
 type Service interface {
-	GenerateToken(uuid uuid.UUID) (token string, err error)
+	GenerateToken(login, password string) (token string, err error)
 }
 
 type service struct {
-	cfg *config.Config
+	cfg    *config.Config
+	stores stores.Stores
 }
 
-func NewService(cfg *config.Config) Service {
-	return &service{cfg: cfg}
+func NewService(cfg *config.Config, stores stores.Stores) Service {
+	return &service{cfg: cfg, stores: stores}
 }

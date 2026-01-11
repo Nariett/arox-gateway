@@ -3,11 +3,11 @@ package users
 import "github.com/jmoiron/sqlx"
 
 type Store interface {
-	Get(username string) (string, error)
+	Get(login, password string) (string, error)
 }
 
-func (s *store) Get(username string) (string, error) {
-	return username, nil
+func (s *store) Get(login, password string) (string, error) {
+	return login, nil
 }
 
 type store struct {

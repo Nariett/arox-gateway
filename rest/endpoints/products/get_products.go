@@ -7,7 +7,7 @@ import (
 
 func (e *endpoint) GetProducts() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		_, err := e.stores.Users().Get("test")
+		_, err := e.stores.Users().Get("test", "test")
 		if err != nil {
 			response.NotFound(w, err.Error())
 

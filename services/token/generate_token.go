@@ -7,12 +7,18 @@ import (
 	"time"
 )
 
-func (s *service) GenerateToken(uuid uuid.UUID) (string, error) {
-	t := time.Now().Add(30 * time.Minute)
-	exp := t.Unix()
+func (s *service) GenerateToken(login, password string) (string, error) {
+	_, err := s.stores.Users().Get(login, password)
+	if err != nil {
+		return "", err
+	}
+
+	userid := uuid.New()
+
 	claims := jwt.MapClaims{
-		"uuid": uuid.String(),
-		"exp":  exp,
+		"uuid": userid.String(),
+		"iat":  time.Now().Unix(),
+		"exp":  time.Now().Add(30 * time.Minute).Unix(),
 	}
 
 	secret := s.cfg.Secret

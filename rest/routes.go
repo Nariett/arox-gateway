@@ -9,7 +9,7 @@ func NewRouter(endpoints endpoints.Endpoints) chi.Router {
 	r := chi.NewRouter()
 
 	r.Route("/token", func(r chi.Router) {
-		r.Get("/{uuid}", endpoints.Token().GetToken())
+		r.Post("/", endpoints.Token().GetToken())
 	})
 
 	r.Route("/products", func(r chi.Router) {
