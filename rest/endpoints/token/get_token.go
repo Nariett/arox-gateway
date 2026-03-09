@@ -2,8 +2,9 @@ package token
 
 import (
 	"encoding/json"
-	"github.com/Nariett/arox-pkg/response"
 	"net/http"
+
+	"github.com/Nariett/arox-pkg/response"
 )
 
 type GetTokenResponse struct {

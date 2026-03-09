@@ -1,8 +1,9 @@
 package products
 
 import (
-	"github.com/Nariett/arox-pkg/response"
 	"net/http"
+
+	"github.com/Nariett/arox-pkg/response"
 )
 
 func (e *endpoint) GetProducts() http.HandlerFunc {

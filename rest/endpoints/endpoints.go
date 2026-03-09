@@ -5,6 +5,8 @@ import (
 	"arox-gateway/rest/endpoints/products"
 	"arox-gateway/rest/endpoints/token"
 	"arox-gateway/stores"
+
+	"github.com/Nariett/arox-pkg/config"
 	proto "github.com/Nariett/arox-pkg/grpc/pb/products"
 	"go.uber.org/fx"
 )
@@ -22,6 +24,7 @@ type Endpoints interface {
 }
 
 type endpoints struct {
+	cfg        *config.Config
 	client     proto.ProductsServiceClient
 	products   products.Endpoint
 	categories categories.Endpoint
@@ -29,8 +32,9 @@ type endpoints struct {
 	stores     stores.Stores
 }
 
-func NewHandler(client proto.ProductsServiceClient, products products.Endpoint, categories categories.Endpoint, token token.Endpoint, stores stores.Stores) Endpoints {
+func NewHandler(cfg *config.Config, client proto.ProductsServiceClient, products products.Endpoint, categories categories.Endpoint, token token.Endpoint, stores stores.Stores) Endpoints {
 	return &endpoints{
+		cfg:        cfg,
 		client:     client,
 		products:   products,
 		categories: categories,

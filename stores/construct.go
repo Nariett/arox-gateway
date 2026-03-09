@@ -2,6 +2,7 @@ package stores
 
 import (
 	"arox-gateway/stores/users"
+
 	"go.uber.org/fx"
 )
 

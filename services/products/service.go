@@ -3,8 +3,11 @@ package products
 import (
 	"arox-gateway/models"
 	"context"
+
 	proto "github.com/Nariett/arox-pkg/grpc/pb/products"
 )
+
+//go:generate mockgen -source=$GOFILE -destination=./mock/$GOFILE
 
 type Service interface {
 	GetById(ctx context.Context, id int64) (*models.Product, error)

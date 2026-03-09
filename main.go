@@ -6,10 +6,12 @@ import (
 	"arox-gateway/rpc"
 	"arox-gateway/services"
 	"arox-gateway/stores"
+	"log"
+
+	"github.com/Nariett/arox-pkg/api/integrations/minio"
 	"github.com/Nariett/arox-pkg/config"
 	"github.com/Nariett/arox-pkg/db"
 	"go.uber.org/fx"
-	"log"
 )
 
 func main() {
@@ -27,6 +29,7 @@ func main() {
 			rest.NewRouter,
 			rpc.ListenServer,
 			db.NewPostgres,
+			minio.NewMinio,
 		),
 		stores.Construct(),
 		services.Construct(),

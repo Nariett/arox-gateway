@@ -2,9 +2,10 @@ package token
 
 import (
 	"errors"
+	"time"
+
 	"github.com/golang-jwt/jwt"
 	"github.com/google/uuid"
-	"time"
 )
 
 func (s *service) GenerateToken(login, password string) (string, error) {

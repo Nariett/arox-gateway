@@ -3,6 +3,10 @@ package token
 import (
 	"arox-gateway/services/token"
 	"net/http"
+
+	"github.com/Nariett/arox-pkg/config"
+
+	"github.com/Nariett/arox-pkg/api/integrations/minio"
 )
 
 type Endpoint interface {
@@ -10,11 +14,15 @@ type Endpoint interface {
 }
 
 type endpoint struct {
-	srv token.Service
+	cfg   *config.Config
+	srv   token.Service
+	minio minio.Minio
 }
 
-func NewEndpoint(srv token.Service) Endpoint {
+func NewEndpoint(cfg *config.Config, srv token.Service, minio minio.Minio) Endpoint {
 	return &endpoint{
-		srv: srv,
+		cfg:   cfg,
+		srv:   srv,
+		minio: minio,
 	}
 }

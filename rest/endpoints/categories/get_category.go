@@ -1,12 +1,13 @@
 package categories
 
 import (
+	"net/http"
+	"strconv"
+
 	"github.com/Nariett/arox-pkg/response"
 	"github.com/go-chi/chi/v5"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"net/http"
-	"strconv"
 )
 
 func (e *endpoint) GetCategory() http.HandlerFunc {

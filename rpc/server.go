@@ -2,10 +2,11 @@ package rpc
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/Nariett/arox-pkg/config"
 	proto "github.com/Nariett/arox-pkg/grpc/pb/products"
 	"google.golang.org/grpc"
-	"log"
 )
 
 func ListenServer(cfg *config.Config) proto.ProductsServiceClient {
